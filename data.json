@@ -1,47 +1,47 @@
 {
     "Questions":[
         {
-            "Quiz": "What does HTML stand for?",
-            "option1": "",
-            "option2": "",
-            "option3": "",
-            "option4": "",
-            "answer": ""
+            "Quiz": "Commonly used data types do not include?",
+            "option1": "Strings",
+            "option2": "Boolean",
+            "option3": "Alerts",
+            "option4": "Numbers",
+            "answer": "Alerts"
 
         },
         {
-            "Quiz": "What does HTML stand for?",
-            "option1": "",
-            "option2": "",
-            "option3": "",
-            "option4": "",
-            "answer": ""
+            "Quiz": "The condition of an if / else statment is enclosed with ?",
+            "option1": "Parentheses",
+            "option2": "Square Brackets",
+            "option3": "Curly Brackets",
+            "option4": "quotes",
+            "answer": "Parentheses"
 
         },
         {
-            "Quiz": "What does HTML stand for?",
-            "option1": "",
-            "option2": "",
-            "option3": "",
-            "option4": "",
-            "answer": ""
+            "Quiz": "an array in JavaScript can be used to store ?",
+            "option1": "Numbers and strings",
+            "option2": "Other arrays",
+            "option3": "Booleans",
+            "option4": "All of the above",
+            "answer": "All of the above"
 
         }, {
-            "Quiz": "What does HTML stand for?",
-            "option1": "",
-            "option2": "",
-            "option3": "",
-            "option4": "",
-            "answer": ""
+            "Quiz": "what do you have to enclose a string to when assigning it to a variable?",
+            "option1": "Commas",
+            "option2": "Parentheses",
+            "option3": "Quotes",
+            "option4": "Curly Brackets",
+            "answer": "Quotes"
 
         },
         {
-            "Quiz": "What does HTML stand for?",
-            "option1": "",
-            "option2": "",
-            "option3": "",
-            "option4": "",
-            "answer": ""
+            "Quiz": "A useful tool during development and debugging for printing content to the debugger is?",
+            "option1": "JavaScript",
+            "option2": "console.log",
+            "option3": "gitbash",
+            "option4": "page-source",
+            "answer": "console.log"
 
         }
     ]
