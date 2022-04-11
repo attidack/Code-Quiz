@@ -10,7 +10,7 @@
 
         },
         {
-            "Quiz": "The condition of an if / else statment is enclosed with ?",
+            "Quiz": "The condition of an if / else statment is enclosed with?",
             "option1": "Parentheses",
             "option2": "Square Brackets",
             "option3": "Curly Brackets",
@@ -19,7 +19,7 @@
 
         },
         {
-            "Quiz": "an array in JavaScript can be used to store ?",
+            "Quiz": "an array in JavaScript can be used to store?",
             "option1": "Numbers and strings",
             "option2": "Other arrays",
             "option3": "Booleans",
