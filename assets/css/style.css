@@ -1,0 +1,27 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+.nav{
+    padding: 20px;
+}
+h1 {
+    font-size: 30px;
+}
+
+input {
+    margin-top: 20px;
+}
+#options :hover{
+    transform: scale(1.05) ;
+
+}
+.active {
+    transform: scale(1.02);
+}
+.box{
+    padding: 40px;
+    border-radius: 10px;
+    -webkit-box-shadow:-1px 8px 15px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow:-1px 8px 15px 0px rgba(0,0,0,0.5);
+    box-shadow: -1px 8px 15px 0px rgba(0,0,0,0.5);
+}
