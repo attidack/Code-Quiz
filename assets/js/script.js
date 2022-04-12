@@ -2,7 +2,7 @@
 
 var count = 0;
 var time = 60;
-var marks = 0;
+var score = 0;
 var answer = [];
 var quizResults = [];
 var timer;
@@ -36,13 +36,13 @@ $(document).ready(function(){
     }
     // Create Question Function
     function adding_Questions(data,i){
-        let quizAnswers= data[i].answer
+        quizResults= data[i].answer
         $('#question').text(data[i].Quiz)
         $('#options1').text(data[i].option1)
         $('#options2').text(data[i].option2)
         $('#options3').text(data[i].option3)
         $('#options4').text(data[i].option4)
-        quizResults = quizAnswers
+        
         
     }
 
@@ -77,27 +77,27 @@ $(document).ready(function(){
         });
             // Answer Selection Function
 
-    function selected_Answer(){
-        for(var i =0; i<4; i++){
-            var a = document.getElementById("options").children;
-            if(a[i].innerHTML == quizResults){
-                console.log(a[i].innerHTML);
-                $('#highscore').show();
-            }
-            else{
-                $('#highscore').hide();
-                
-            }
+    function selected_Answer(data){
+        if(answer[count]== quizResults){
+            console.log(answer[count]);
+            console.log(quizResults)
+            score += 1
         }
+        else{
+            time = time-10
+            console.log('looser')
+        }  
+        
     }
     function creating_Result(data){
-        for(var i = 0; i < answer.length; i++){
-            marks += 5
-        }
+        
+        $('#timer').hide();
         $('#main').hide();
-        $('#marks').text(marks);
-        $('#correct-answer').text(marks / 5);
-        $('#percentage').text((marks / 25)* 100 + "%");
+        $('#timeLeft').text(time += 1)
+        $('#score').text(score * time);
+        $('#numberOfQuestions').text(answer.length)
+        $('#correct-answer').text(score);
+        $('#percentage').text((score / answer.length)* 100 + "%");
 
         $('#Result').show();
     }
@@ -107,7 +107,14 @@ $(document).ready(function(){
         $(".option").click(function(){
             $(this).addClass('btn-selected');
             $(this).siblings().removeClass('btn-selected');
-            answer[count] = $(this).html();            
+            answer[count] = $(this).html();  
+        
+            if(answer[count]== quizResults){
+                console.log('winner');
+            }
+            else{
+                console.log('looser')
+            }     
         })
         
         // Next Questions
@@ -117,12 +124,12 @@ $(document).ready(function(){
                 alert("Select atleast 1 Option")
             }
             else{
+                selected_Answer();
                 count++;
-                adding_Questions(data.Questions, count);
                 $('#prev').show();
                 $('.option').removeClass('btn-selected');
+                adding_Questions(data.Questions, count);
                 buttons_manager();
-                selected_Answer();
             }
         })
         // Previous Questions
@@ -139,6 +146,7 @@ $(document).ready(function(){
                 alert("Select atleast 1 option");
             }
             else{
+                selected_Answer();
                 creating_Result(data);
                 clearInterval(timer);
             }

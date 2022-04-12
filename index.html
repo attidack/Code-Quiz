@@ -21,6 +21,7 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-between nav">
             <a href="" class="highscore">Hightscores</a>
+            
             <div class="timer" id="timer">Total Time : 00:<span id="time">00</span></div>
         </div>
         <div class="row justify-content-center align-items-center">
@@ -54,8 +55,9 @@
                 </div>
                 <!-- Results Page-->
                 <div id="Result">
-                    <h3 class="mt-5 display-4">Score: <span id="marks"></span>/25</h3>
-                    <h3 class="mt-4"><span id="correct-answer"></span> Correct out of 5</h3>
+                    <h3 class="mt-5 display-4">Score: <span id="score"></span></h3>
+                    <h3 class="mt-4">Remaing Time: <span id="timeLeft"></span></h3>
+                    <h3 class="mt-4"><span id="correct-answer"></span> Correct out of <span id="numberOfQuestions"></span></h3>
                     <h3 class="mt-4">Result: <span id="percentage"></span></h3>
                 </div>
                 <!-- Highscore-->
@@ -63,10 +65,10 @@
                     <h3 class="mt-5">Highscore</h3>
                     <ul class="list-group">
                         <li class="list-group-item active" id="highscoreplace"  aria-current="true"><span id="name">name</span> : <span id="score">Score</span></li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                        <li class="list-group-item">A fourth item</li>
-                        <li class="list-group-item">And a fifth one</li>
+                        <li class="list-group-item"id="highscoreplace"  aria-current="true"><span id="name">name</span> : <span id="score">Score</span></li>
+                        <li class="list-group-item"id="highscoreplace"  aria-current="true"><span id="name">name</span> : <span id="score">Score</span></li>
+                        <li class="list-group-item"id="highscoreplace"  aria-current="true"><span id="name">name</span> : <span id="score">Score</span></li>
+                        <li class="list-group-item"id="highscoreplace"  aria-current="true"><span id="name">name</span> : <span id="score">Score</span></li>
                     </ul>
                 </div>
             </div>
