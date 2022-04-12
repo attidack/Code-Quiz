@@ -21,3 +21,29 @@ input {
     -moz-box-shadow:-1px 8px 15px 0px rgba(0,0,0,0.5);
     box-shadow: -1px 8px 15px 0px rgba(0,0,0,0.5);
 }
+.btn-primary{
+    background-color: #351c75;
+    border-color: #351c75;
+}
+
+.btn-primary:hover{
+    background-color: #bd60e7;
+    border-color: #bd60e7;
+}
+.btn-selected{
+    background-color: #bd60e7;
+    border-color: #bd60e7;
+    transform: scale(1.05);
+}
+a {
+    color: #bd60e7;
+}
+a:hover{
+    color: #351c75;
+}
+.correct {
+    background-color:  rgb(41, 232, 111);
+}
+.incorrect {
+    background-color: rgb(224, 11, 11);
+}

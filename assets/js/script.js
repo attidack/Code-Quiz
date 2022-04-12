@@ -4,7 +4,9 @@ var count = 0;
 var time = 60;
 var marks = 0;
 var answer = [];
+var quizResults = [];
 var timer;
+
 
 // main ready function
 
@@ -34,42 +36,15 @@ $(document).ready(function(){
     }
     // Create Question Function
     function adding_Questions(data,i){
+        let quizAnswers= data[i].answer
         $('#question').text(data[i].Quiz)
         $('#options1').text(data[i].option1)
         $('#options2').text(data[i].option2)
         $('#options3').text(data[i].option3)
         $('#options4').text(data[i].option4)
+        quizResults = quizAnswers
         
     }
-
-    // Answer Selection Function
-
-    function selected_Answer(){
-        for(var i =0; i<4; i++){
-            var a = document.getElementById("options").children;
-            console.log(a[i].innerHTML);
-            console.log(answer[count])
-            if(a[i].innerHTML == answer[count]){
-                
-                $('#options').children("button")[i].classlist.add('active');
-            }
-            else{
-                $('#options').children("button")[i].classlist.remove('active');
-            }
-        }
-    }
-    function creating_Result(data){
-        for(var i = 0; i < answer.length; i++){
-            marks += 5
-        }
-        $('#main').hide();
-        $('#marks').text(marks);
-        $('#correct-answer').text(marks / 5);
-        $('#percentage').text((marks / 25)* 100 + "%");
-
-        $('#Result').show();
-    }
-    $('#options').hide();
 
     // Attach API
 
@@ -79,6 +54,7 @@ $(document).ready(function(){
         return response.json();
     })
     .then(function (data){
+        quizResults.push(...data.Questions)
         $('#btn').click(function() {
             $('#options').show();
             adding_Questions(data.Questions,count);
@@ -99,14 +75,41 @@ $(document).ready(function(){
                 time--;
             }
         });
+            // Answer Selection Function
+
+    function selected_Answer(){
+        for(var i =0; i<4; i++){
+            var a = document.getElementById("options").children;
+            if(a[i].innerHTML == quizResults){
+                console.log(a[i].innerHTML);
+                $('#highscore').show();
+            }
+            else{
+                $('#highscore').hide();
+                
+            }
+        }
+    }
+    function creating_Result(data){
+        for(var i = 0; i < answer.length; i++){
+            marks += 5
+        }
+        $('#main').hide();
+        $('#marks').text(marks);
+        $('#correct-answer').text(marks / 5);
+        $('#percentage').text((marks / 25)* 100 + "%");
+
+        $('#Result').show();
+    }
+    $('#options').hide();
+
         // Select Options
         $(".option").click(function(){
-
-            $(this).addClass('active');
-            $(this).siblings().removeClass('active');
-            answer[count] = $(this).html();
+            $(this).addClass('btn-selected');
+            $(this).siblings().removeClass('btn-selected');
+            answer[count] = $(this).html();            
         })
-
+        
         // Next Questions
 
         $('#next').click(function() {
@@ -117,7 +120,7 @@ $(document).ready(function(){
                 count++;
                 adding_Questions(data.Questions, count);
                 $('#prev').show();
-                $('.option').removeClass('active');
+                $('.option').removeClass('btn-selected');
                 buttons_manager();
                 selected_Answer();
             }

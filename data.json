@@ -6,7 +6,9 @@
             "option2": "Boolean",
             "option3": "Alerts",
             "option4": "Numbers",
-            "answer": "Alerts"
+            "answer": "Alerts",
+            "correctAnswer": false,
+            "quizId":1
 
         },
         {
@@ -15,7 +17,9 @@
             "option2": "Square Brackets",
             "option3": "Curly Brackets",
             "option4": "quotes",
-            "answer": "Parentheses"
+            "answer": "Parentheses",
+            "correctAnswer": false,
+            "quizId":2
 
         },
         {
@@ -24,7 +28,9 @@
             "option2": "Other arrays",
             "option3": "Booleans",
             "option4": "All of the above",
-            "answer": "All of the above"
+            "answer": "All of the above",
+            "correctAnswer": false,
+            "quizId":3
 
         }, {
             "Quiz": "what do you have to enclose a string to when assigning it to a variable?",
@@ -32,7 +38,9 @@
             "option2": "Parentheses",
             "option3": "Quotes",
             "option4": "Curly Brackets",
-            "answer": "Quotes"
+            "answer": "Quotes",
+            "correctAnswer": false,
+            "quizId":4
 
         },
         {
@@ -41,7 +49,9 @@
             "option2": "console.log",
             "option3": "gitbash",
             "option4": "page-source",
-            "answer": "console.log"
+            "answer": "console.log",
+            "correctAnswer": false,
+            "quizId":5
 
         }
     ]
