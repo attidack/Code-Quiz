@@ -9,31 +9,13 @@ var timer;
 
 
 // main ready function
-
 $(document).ready(function(){
     $('#finish').hide();
     $('#Result').hide();
     $('#highscore').hide();
+    $('#answerValid').hide();
+    $('#time').text(time);
     
-
-    buttons_manager();
-
-// Create Function
-    function buttons_manager(){
-        if(count > 0){
-            $('#prev').show;
-            if(count == 4){
-                $('#next').hide();
-                $('#finish').show();
-            }
-            else{
-                $('#next').show();
-            }
-        }
-        else {
-            $('#prev').hide();
-        }
-    }
     // Create Question Function
     function adding_Questions(data,i){
         quizResults= data[i].answer
@@ -42,13 +24,9 @@ $(document).ready(function(){
         $('#options2').text(data[i].option2)
         $('#options3').text(data[i].option3)
         $('#options4').text(data[i].option4)
-        
-        
     }
 
     // Attach API
-
-
     fetch('data.json')
     .then(function (response){
         return response.json();
@@ -75,22 +53,21 @@ $(document).ready(function(){
                 time--;
             }
         });
-            // Answer Selection Function
+    // Answer Selection Function
 
     function selected_Answer(data){
-        if(answer[count]== quizResults){
+        if(answer[count] == quizResults){
             console.log(answer[count]);
             console.log(quizResults)
             score += 1
+            $('#answer').text('Correct!')
         }
         else{
             time = time-10
-            console.log('looser')
+            $('#answer').text('Wrong answer, correct answer is ' + quizResults)
         }  
-        
     }
     function creating_Result(data){
-        
         $('#timer').hide();
         $('#main').hide();
         $('#timeLeft').text(time += 1)
@@ -108,50 +85,21 @@ $(document).ready(function(){
             $(this).addClass('btn-selected');
             $(this).siblings().removeClass('btn-selected');
             answer[count] = $(this).html();  
-        
-            if(answer[count]== quizResults){
-                console.log('winner');
-            }
-            else{
-                console.log('looser')
-            }     
-        })
-        
-        // Next Questions
-
-        $('#next').click(function() {
             if(count > answer.length - 1){
                 alert("Select atleast 1 Option")
             }
             else{
                 selected_Answer();
                 count++;
-                $('#prev').show();
+                $('#answerValid').show();
                 $('.option').removeClass('btn-selected');
-                adding_Questions(data.Questions, count);
-                buttons_manager();
-            }
+                if(answer.length == 5){
+                    clearInterval(timer);
+                    creating_Result(data);                    
+                }else{
+                    adding_Questions(data.Questions, count);
+                }
+            }  
         })
-        // Previous Questions
-        $('#prev').click(function(){
-            count--;
-            adding_Questions(data.Questions, count);
-            buttons_manager();
-            selected_Answer();
-        })
-
-        // Finish Quiz
-        $('#finish').click(function(){
-            if(count > answer.length -1){
-                alert("Select atleast 1 option");
-            }
-            else{
-                selected_Answer();
-                creating_Result(data);
-                clearInterval(timer);
-            }
-        });
-
-
     })
 })
