@@ -5,16 +5,28 @@ var time = 45;
 var score = 0;
 var answer = [];
 var quizResults = [];
-var highScores = [];
+var highScoreIdCounter = 0;
+var highScoreContent = document.querySelector('#highScores');
 var timer;
+const username = document.querySelector('#initalsInput')
+const saveScoreBtn = document.querySelector('#highScorePromptSave')
+const finalScore = document.querySelector('#score')
+const mostRecentScore = localStorage.getItem('mostRecentScore')
+const highScoresList = document.querySelector('#highScoresList')
+const highScores = JSON.parse(localStorage.getItem('highScores')) || []
+highScoresList.innerHTML = 
+highScores.map(score => {
+    return '<li class="high-score">${score.name}-${score.score}</li>'
+}).join('')
 
 
 // main ready function
 $(document).ready(function(){
     $('#finish').hide();
     $('#Result').hide();
-    $('#highscore').hide();
+    $('#highScores').hide();
     $('#answerValid').hide();
+    $('#highScorePrompt').hide();
     $('#time').text(time);
     
     // Create Question Function
@@ -68,27 +80,47 @@ $(document).ready(function(){
                 $('#answer').text('Wrong answer, - 10 seconds from the clock!')
             }  
         }
-        function highScore(){
-            if(score > highScores.score){
-                
-                if(highScores.length > 5){
-                    highScores.pop();
-                }
+        const highScores = JSON.parse(localStorage.getItem('highScores')) || []
 
+        const MAX_HIGH_SCORES = 5
 
+        finalScore.innerText = mostRecentScore
+
+        username.addEventListener('keyup', () => {
+            saveScoreBtn.disabled = !username.value
+        })
+        saveHighScore = e => {
+            e.preventDefault()
+            const score = {
+                score: mostRecentScore,
+                name: username.value
             }
+            highScores.push(score)
+
+            highScores.sort((a,b) => {
+                return b.score - a.score
+            })
+            highScores.splice(5)
+
+            localStorage.setItem('highScores', JSON.stringify(highScores))
+            window.location.assign('/')
         }
+
+
+
+
         function creating_Result(data){
             $('#answerValid').hide();
             $('#timer').hide();
             $('#main').hide();
-            $('#timeLeft').text(time += 1)
+            $('#timeLeft').text(time += 1) 
             $('#score').text(score * time);
             $('#numberOfQuestions').text(data.Questions.length)
             $('#correct-answer').text(score);
             $('#percentage').text((score / answer.length)* 100 + "%");
             $('#Result').show();
-            $('#highscore').show();
+            $('#highScorePrompt').show();
+            $('#highScores').show();
         }
         $('#options').hide();
 

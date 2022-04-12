@@ -11,9 +11,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js"></script>
-    <link rel="stylesheet" href="./assets/css/style.css" />
+   <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Code Quiz</title>
   </head>
   <body>
@@ -57,10 +55,10 @@
                     <h3 class="mt-4">Result: <span id="percentage"></span></h3>
                 </div>
                 <!-- Highscore-->
-                <div id="highscore">
+                <div id="highScores">
                     <hr class="mt-3" />
-                    <h3 class="mt-1">Highscores</h3>
-                    <ul class="list-group">
+                    <h3 class="mt-1" id="finalScore">Highscores</h3>
+                    <ul class="list-group" id="highScoresList">
                         <li class="list-group-item active" id="highscoreplace"  aria-current="true"><span id="name">name</span> : <span id="score">Score</span></li>
                         <li class="list-group-item"id="highscoreplace"  aria-current="true"><span id="name">name</span> : <span id="score">Score</span></li>
                         <li class="list-group-item"id="highscoreplace"  aria-current="true"><span id="name">name</span> : <span id="score">Score</span></li>
@@ -72,12 +70,14 @@
                 <div id="highScorePrompt">
                     <h3 class="mt-1">You got a Highscore!</h3>
                     <p>Please enter your initials for your score to be kept on this computer</p>
-                    <input class="form-control" type="text" placeholder="type your initials here" aria-label="default input example">
-                    <button id="highScorePromptSave" type="button" class="btn btn-primary btn-block mt-4">Save Highscore</button>
+                    <input class="form-control" id="initalsInput" type="text" placeholder="type your initials here" aria-label="default input example">
+                    <button id="highScorePromptSave" type=submit class="btn btn-primary btn-block mt-4">Save Highscore</button>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
