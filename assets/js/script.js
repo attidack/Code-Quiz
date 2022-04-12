@@ -1,10 +1,11 @@
 // Variables
 
 var count = 0;
-var time = 60;
+var time = 45;
 var score = 0;
 var answer = [];
 var quizResults = [];
+var highScores = [];
 var timer;
 
 
@@ -32,7 +33,6 @@ $(document).ready(function(){
         return response.json();
     })
     .then(function (data){
-        quizResults.push(...data.Questions)
         $('#btn').click(function() {
             $('#options').show();
             adding_Questions(data.Questions,count);
@@ -53,32 +53,44 @@ $(document).ready(function(){
                 time--;
             }
         });
-    // Answer Selection Function
+            
+        // Answer Selection Function
 
-    function selected_Answer(data){
-        if(answer[count] == quizResults){
-            console.log(answer[count]);
-            console.log(quizResults)
-            score += 1
-            $('#answer').text('Correct!')
+        function selected_Answer(data){
+            if(answer[count] == quizResults){
+                console.log(answer[count]);
+                console.log(quizResults)
+                score += 1
+                $('#answer').text('Correct!')
+            }
+            else{
+                time = time-10
+                $('#answer').text('Wrong answer, - 10 seconds from the clock!')
+            }  
         }
-        else{
-            time = time-10
-            $('#answer').text('Wrong answer, correct answer is ' + quizResults)
-        }  
-    }
-    function creating_Result(data){
-        $('#timer').hide();
-        $('#main').hide();
-        $('#timeLeft').text(time += 1)
-        $('#score').text(score * time);
-        $('#numberOfQuestions').text(data.Questions.length)
-        $('#correct-answer').text(score);
-        $('#percentage').text((score / answer.length)* 100 + "%");
+        function highScore(){
+            if(score > highScores.score){
+                
+                if(highScores.length > 5){
+                    highScores.pop();
+                }
 
-        $('#Result').show();
-    }
-    $('#options').hide();
+
+            }
+        }
+        function creating_Result(data){
+            $('#answerValid').hide();
+            $('#timer').hide();
+            $('#main').hide();
+            $('#timeLeft').text(time += 1)
+            $('#score').text(score * time);
+            $('#numberOfQuestions').text(data.Questions.length)
+            $('#correct-answer').text(score);
+            $('#percentage').text((score / answer.length)* 100 + "%");
+            $('#Result').show();
+            $('#highscore').show();
+        }
+        $('#options').hide();
 
         // Select Options
         $(".option").click(function(){
@@ -100,6 +112,6 @@ $(document).ready(function(){
                     adding_Questions(data.Questions, count);
                 }
             }  
-        })
+        });
     })
 })

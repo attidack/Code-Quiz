@@ -36,18 +36,18 @@
                 <!-- Quiz page-->
                 <div id="main">
                     <div class="card-body">
-                        <h1 class="card-text font-weight-bold" id="question"></h1>
+                        <h1 class="card-text font-weight-bold text-center" id="question"></h1>
                     </div>
-                    <div  class="col-md-12 p-4" id="options">
-                        <button class="btn btn-block btn-primary text-left option col-6 col-md-11 col-sm-12" id="options1"></button>
-                        <button class="btn btn-block btn-primary text-left option col-6 col-md-11 col-sm-12" id="options2"></button>
-                        <button class="btn btn-block btn-primary text-left option col-6 col-md-11 col-sm-12" id="options3"></button>
-                        <button class="btn btn-block btn-primary text-left option col-6 col-md-11 col-sm-12" id="options4"></button>
+                    <div  class="col-md-12 col-sm-12 p-4" id="options">
+                        <button class="btn btn-block btn-primary text-left option" id="options1"></button>
+                        <button class="btn btn-block btn-primary text-left option" id="options2"></button>
+                        <button class="btn btn-block btn-primary text-left option" id="options3"></button>
+                        <button class="btn btn-block btn-primary text-left option" id="options4"></button>
                     </div>
-                    <div id="answerValid">
-                        <hr>
-                        <h3 class="mt-3"><span id="answer"></span></h3>
-                    </div>
+                </div>
+                <div id="answerValid">
+                    <hr>
+                    <h3 class="mt-3 text-center"><span id="answer"></span></h3>
                 </div>
                 <!-- Results Page-->
                 <div id="Result">
@@ -58,7 +58,8 @@
                 </div>
                 <!-- Highscore-->
                 <div id="highscore">
-                    <h3 class="mt-5">Highscore</h3>
+                    <hr class="mt-3" />
+                    <h3 class="mt-1">Highscores</h3>
                     <ul class="list-group">
                         <li class="list-group-item active" id="highscoreplace"  aria-current="true"><span id="name">name</span> : <span id="score">Score</span></li>
                         <li class="list-group-item"id="highscoreplace"  aria-current="true"><span id="name">name</span> : <span id="score">Score</span></li>
@@ -66,6 +67,13 @@
                         <li class="list-group-item"id="highscoreplace"  aria-current="true"><span id="name">name</span> : <span id="score">Score</span></li>
                         <li class="list-group-item"id="highscoreplace"  aria-current="true"><span id="name">name</span> : <span id="score">Score</span></li>
                     </ul>
+                </div>
+                <!--highScore prompt-->
+                <div id="highScorePrompt">
+                    <h3 class="mt-1">You got a Highscore!</h3>
+                    <p>Please enter your initials for your score to be kept on this computer</p>
+                    <input class="form-control" type="text" placeholder="type your initials here" aria-label="default input example">
+                    <button id="highScorePromptSave" type="button" class="btn btn-primary btn-block mt-4">Save Highscore</button>
                 </div>
             </div>
         </div>
