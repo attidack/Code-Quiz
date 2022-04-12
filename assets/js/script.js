@@ -72,7 +72,7 @@ $(document).ready(function(){
         $('#main').hide();
         $('#timeLeft').text(time += 1)
         $('#score').text(score * time);
-        $('#numberOfQuestions').text(answer.length)
+        $('#numberOfQuestions').text(data.Questions.length)
         $('#correct-answer').text(score);
         $('#percentage').text((score / answer.length)* 100 + "%");
 
@@ -93,7 +93,7 @@ $(document).ready(function(){
                 count++;
                 $('#answerValid').show();
                 $('.option').removeClass('btn-selected');
-                if(answer.length == 5){
+                if(answer.length == data.Questions.length){
                     clearInterval(timer);
                     creating_Result(data);                    
                 }else{
