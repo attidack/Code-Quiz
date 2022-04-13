@@ -5,8 +5,6 @@ var time = 45;
 var score = 0;
 var answer = [];
 var quizResults = [];
-var highScoreIdCounter = 0;
-var highScoreContent = document.querySelector('#highScores');
 var timer;
 const username = document.querySelector('#username')
 const saveScoreBtn = document.querySelector('#saveScoreBtn')
@@ -45,10 +43,7 @@ $(document).ready(function(){
             $('#options').show();
             adding_Questions(data.Questions,count);
             $('.start_page').hide();
-            $('#prev').hide()
-
             timer = setInterval(timer_function , 1000);
-
             function timer_function(){
                 $('#time').text(time);
                 if(time < 1){
@@ -63,7 +58,6 @@ $(document).ready(function(){
         });
             
         // Answer Selection Function
-
         function selected_Answer(data){
             if(answer[count] == quizResults){
                 console.log(answer[count]);
@@ -76,7 +70,8 @@ $(document).ready(function(){
                 $('#answer').text('Wrong answer, - 10 seconds from the clock!')
             }  
         }
-        
+
+        // Save Highscores
         saveHighScore = e => {
             const mostRecentScore = localStorage.getItem('mostRecentScore')
             const highScores = JSON.parse(localStorage.getItem('highScores')) || []
@@ -92,26 +87,25 @@ $(document).ready(function(){
                 return b.score - a.score
             })
             highScores.splice(10)
-
             localStorage.setItem('highScores', JSON.stringify(highScores))
-            
             $('#highScorePrompt').hide()
-            console.log(finalScore.innerText)
-            console.log(mostRecentScore)
             loadHighScores()
-
         }
-        
+
+        // load High Scores
         function loadHighScores(){
             const highScores = JSON.parse(localStorage.getItem('highScores'))
             highScoresList.innerHTML = 
                 highScores.map(score => {
-                    return `<li class="list-group-item"id="highscoreplace2"  aria-current="true">${score.name} - ${score.score}</li>`
+                    return `<li class="list-group-item" aria-current="true">${score.name} - ${score.score}</li>`
                 }).join('')
+            if(score.name == username.value && score.score == mostRecentScore){
+                highScoresList.className = " active";
+            }
             $('#leaderBoard').show();
-
         }
-        
+
+        // End of quiz score page
         function creating_Result(data){
             $('#answerValid').hide();
             $('#timer').hide();
@@ -123,13 +117,12 @@ $(document).ready(function(){
             localStorage.setItem('mostRecentScore', score)
             $('#finalScore').text(score);
             $('#numberOfQuestions').text(data.Questions.length)
-            
             $('#Result').show();
             $('#highScorePrompt').show();
         }
         $('#options').hide();
 
-        // Select Options
+        // Select question answers
         $(".option").click(function(){
             $(this).addClass('btn-selected');
             $(this).siblings().removeClass('btn-selected');
@@ -149,6 +142,20 @@ $(document).ready(function(){
                     adding_Questions(data.Questions, count);
                 }
             }  
+        });
+
+        // top highscore link function
+        $("#highScoreLink").click(function(){
+            $('#answerValid').hide();
+            $('#timer').hide();
+            $('#main').hide();
+            $('.start_page').hide();
+            loadHighScores()
+        });
+
+        //home reload function
+        $("#homeLink").click(function(){
+            location.reload(); 
         });
     })
 })

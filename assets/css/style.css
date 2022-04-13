@@ -35,10 +35,10 @@ input {
     border-color: #bd60e7;
     transform: scale(1.05);
 }
-a {
+.highScoreLink {
     color: #bd60e7;
 }
-a:hover{
+.highScoreLink:hover{
     color: #351c75;
 }
 .correct {
