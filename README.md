@@ -30,6 +30,9 @@ Features:
 
 This is the 4th week challenge for the U of U bootcamp. this code was created AFTER doing sever youtube tutorials on the same challenge. 
 
+mockup was supposed to resemble this gif
+![Screenshot](assets/images/mockup-demo.gif)
+
 ## License
 
 MIT License
