@@ -5,9 +5,10 @@
 This is a Code Quiz application
 
 Features:
--timer deduction for incorrect problems
--score system
--leaderboard saved to local storage
+- timer deduction for incorrect problems
+- score system
+- leaderboard saved to local storage
+- single page layout
 
 
 ## Table of Contents
@@ -30,7 +31,7 @@ Features:
 
 This is the 4th week challenge for the U of U bootcamp. this code was created AFTER doing sever youtube tutorials on the same challenge. 
 
-mockup was supposed to resemble this gif
+mockup was supposed to resemble this gif from the u of u bootcamp
 ![Screenshot](assets/images/mockup-demo.gif)
 
 ## License
