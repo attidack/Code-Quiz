@@ -1,4 +1,4 @@
-# PORTFOLIO PROJECT
+# Quiz Application
 
 ## Description
 
