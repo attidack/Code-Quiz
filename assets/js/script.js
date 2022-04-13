@@ -8,23 +8,19 @@ var quizResults = [];
 var highScoreIdCounter = 0;
 var highScoreContent = document.querySelector('#highScores');
 var timer;
-const username = document.querySelector('#initalsInput')
-const saveScoreBtn = document.querySelector('#highScorePromptSave')
-const finalScore = document.querySelector('#score')
-const mostRecentScore = localStorage.getItem('mostRecentScore')
+const username = document.querySelector('#username')
+const saveScoreBtn = document.querySelector('#saveScoreBtn')
+const finalScore = document.querySelector('#finalScore')
 const highScoresList = document.querySelector('#highScoresList')
-const highScores = JSON.parse(localStorage.getItem('highScores')) || []
-highScoresList.innerHTML = 
-highScores.map(score => {
-    return '<li class="high-score">${score.name}-${score.score}</li>'
-}).join('')
+
+
 
 
 // main ready function
 $(document).ready(function(){
     $('#finish').hide();
     $('#Result').hide();
-    $('#highScores').hide();
+    $('#leaderBoard').hide();
     $('#answerValid').hide();
     $('#highScorePrompt').hide();
     $('#time').text(time);
@@ -80,47 +76,56 @@ $(document).ready(function(){
                 $('#answer').text('Wrong answer, - 10 seconds from the clock!')
             }  
         }
-        const highScores = JSON.parse(localStorage.getItem('highScores')) || []
-
-        const MAX_HIGH_SCORES = 5
-
-        finalScore.innerText = mostRecentScore
-
-        username.addEventListener('keyup', () => {
-            saveScoreBtn.disabled = !username.value
-        })
+        
         saveHighScore = e => {
+            const mostRecentScore = localStorage.getItem('mostRecentScore')
+            const highScores = JSON.parse(localStorage.getItem('highScores')) || []
+            finalScore.innerText = mostRecentScore
             e.preventDefault()
-            const score = {
+            const leaderBoardList = {
                 score: mostRecentScore,
                 name: username.value
             }
-            highScores.push(score)
+            highScores.push(leaderBoardList)
 
             highScores.sort((a,b) => {
                 return b.score - a.score
             })
-            highScores.splice(5)
+            highScores.splice(10)
 
             localStorage.setItem('highScores', JSON.stringify(highScores))
-            window.location.assign('/')
+            
+            $('#highScorePrompt').hide()
+            console.log(finalScore.innerText)
+            console.log(mostRecentScore)
+            loadHighScores()
+
         }
+        
+        function loadHighScores(){
+            const highScores = JSON.parse(localStorage.getItem('highScores'))
+            highScoresList.innerHTML = 
+                highScores.map(score => {
+                    return `<li class="list-group-item"id="highscoreplace2"  aria-current="true">${score.name} - ${score.score}</li>`
+                }).join('')
+            $('#leaderBoard').show();
 
-
-
-
+        }
+        
         function creating_Result(data){
             $('#answerValid').hide();
             $('#timer').hide();
             $('#main').hide();
             $('#timeLeft').text(time += 1) 
-            $('#score').text(score * time);
-            $('#numberOfQuestions').text(data.Questions.length)
             $('#correct-answer').text(score);
             $('#percentage').text((score / answer.length)* 100 + "%");
+            score = score * time
+            localStorage.setItem('mostRecentScore', score)
+            $('#finalScore').text(score);
+            $('#numberOfQuestions').text(data.Questions.length)
+            
             $('#Result').show();
             $('#highScorePrompt').show();
-            $('#highScores').show();
         }
         $('#options').hide();
 
