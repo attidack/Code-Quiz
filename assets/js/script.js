@@ -70,26 +70,30 @@ $(document).ready(function(){
                 $('#answer').text('Wrong answer, - 10 seconds from the clock!')
             }  
         }
-
+        
         // Save Highscores
         saveHighScore = e => {
             const mostRecentScore = localStorage.getItem('mostRecentScore')
             const highScores = JSON.parse(localStorage.getItem('highScores')) || []
             finalScore.innerText = mostRecentScore
             e.preventDefault()
-            const leaderBoardList = {
-                score: mostRecentScore,
-                name: username.value
-            }
-            highScores.push(leaderBoardList)
+            if(username.value == "" || username.value == null){
+                alert('please enter your initals or name')
+            }else{
+                const leaderBoardList = {
+                    score: mostRecentScore,
+                    name: username.value
+                }
+                highScores.push(leaderBoardList)
 
-            highScores.sort((a,b) => {
-                return b.score - a.score
-            })
-            highScores.splice(10)
-            localStorage.setItem('highScores', JSON.stringify(highScores))
-            $('#highScorePrompt').hide()
-            loadHighScores()
+                highScores.sort((a,b) => {
+                    return b.score - a.score
+                })
+                highScores.splice(10)
+                localStorage.setItem('highScores', JSON.stringify(highScores))
+                $('#highScorePrompt').hide()
+                loadHighScores()
+            }
         }
 
         // load High Scores
@@ -105,7 +109,7 @@ $(document).ready(function(){
             $('#leaderBoard').show();
         }
 
-        // End of quiz score page
+        // End of quiz score page logic
         function creating_Result(data){
             $('#answerValid').hide();
             $('#timer').hide();
@@ -119,6 +123,7 @@ $(document).ready(function(){
             $('#numberOfQuestions').text(data.Questions.length)
             $('#Result').show();
             $('#highScorePrompt').show();
+            loadHighScores()
         }
         $('#options').hide();
 
